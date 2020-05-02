@@ -15,8 +15,12 @@ body {
     background-color: #e9ecef;
 }
 .heading .right {
-    margin-left: 48px;
+    margin-left: 55px;
 }
+.heading .left {
+    margin-right: -2px;
+}
+
 .image {
     display: inline-block;
     position: absolute;

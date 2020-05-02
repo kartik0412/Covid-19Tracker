@@ -81,13 +81,14 @@ export default class App extends React.Component {
                         ""
                     )}
                 </div>
-                {timeseries && state === 0 && <Chart timeseries={timeseries} />}
-                {state ? (
-                    <div className="table-box">
-                        <Table state={statewise[state].state} />
-                    </div>
+                {timeseries && state === 0 ? (
+                    <Chart timeseries={timeseries} />
                 ) : (
-                    ""
+                    state && (
+                        <div className="table-box">
+                            <Table state={statewise[state].state} />
+                        </div>
+                    )
                 )}
             </>
         );
