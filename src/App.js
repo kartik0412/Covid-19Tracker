@@ -22,6 +22,7 @@ export default class App extends React.Component {
             this.setState({
                 statewise: data.statewise,
                 timeseries: data.cases_time_series,
+                state: 0,
             });
         } catch (err) {}
     }
@@ -81,14 +82,16 @@ export default class App extends React.Component {
                         ""
                     )}
                 </div>
-                {timeseries && state === 0 ? (
-                    <Chart timeseries={timeseries} />
-                ) : (
-                    state && (
+                {timeseries ? (
+                    this.state.state == 0 ? (
+                        <Chart timeseries={timeseries} />
+                    ) : (
                         <div className="table-box">
                             <Table state={statewise[state].state} />
                         </div>
                     )
+                ) : (
+                    ""
                 )}
             </>
         );

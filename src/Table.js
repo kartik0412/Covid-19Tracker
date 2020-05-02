@@ -45,7 +45,7 @@ export default class Table extends React.Component {
     }
 
     async componentWillReceiveProps(nextProps) {
-        if (nextProps.state !== this.state.state) {
+        if (nextProps.state !== this.state.state && nextProps.state !== "Total") {
             let info = await this.findstate(this.state.data, nextProps.state);
             this.setState({ info: info.districtData });
         }
@@ -53,9 +53,11 @@ export default class Table extends React.Component {
 
     async componentDidMount() {
         try {
-            let { data } = await axios.get("https://api.covid19india.org/v2/state_district_wise.json");
-            let info = await this.findstate(data, this.props.state);
-            this.setState({ info: info.districtData, data: data });
+            if (this.props.state !== "Total") {
+                let { data } = await axios.get("https://api.covid19india.org/v2/state_district_wise.json");
+                let info = await this.findstate(data, this.props.state);
+                this.setState({ info: info.districtData, data: data });
+            }
         } catch (err) {}
     }
     findstate(data, x) {
