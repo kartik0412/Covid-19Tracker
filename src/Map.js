@@ -4,10 +4,6 @@ import { SVGMap } from "react-svg-map";
 import "./Map.css";
 
 export default class Map extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handlemapselect = this.handlemapselect.bind(this);
-    }
     handlemapselect(e) {
         let x = document.getElementsByTagName("path");
         for (let i = 0; i < x.length; i++) {
@@ -23,7 +19,7 @@ export default class Map extends React.Component {
             <div className="map-box">
                 <p>Last updated : {this.props.updatetime}</p>
                 <h1>Click on State/UT to view their stats </h1>
-                <SVGMap onLocationClick={this.handlemapselect} map={India} />
+                <SVGMap onLocationClick={(e) => this.handlemapselect(e)} map={India} />
             </div>
         );
     }
