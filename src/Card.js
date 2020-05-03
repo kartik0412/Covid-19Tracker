@@ -5,25 +5,22 @@ import "./Card.css";
 class Card extends React.Component {
     render() {
         return (
-            <div className="card-box col-sm-3 ">
-                <div className="card-main">
-                    <div className="card-number">
-                        <CountUp separator={","} start={0} end={this.props.value} duration={1} />
-                    </div>
-                    <div style={{ color: this.props.color }} className="card-delta">
-                        {this.props.delta ? (
-                            <>
-                                [+
-                                <CountUp separator={","} start={0} end={this.props.delta} duration={1} />]
-                            </>
-                        ) : (
-                            ""
-                        )}
-                    </div>
-                    <div style={{ color: this.props.color }} className="card-title">
-                        {this.props.title}
-                        <p>Last Updated : {this.props.updatetime}</p>
-                    </div>
+            <div style={{ backgroundColor: this.props.color3 }} className="card-main">
+                <div style={{ color: this.props.color2 }} className="card-number">
+                    <CountUp separator={","} start={0} end={this.props.value} duration={0.5} />
+                </div>
+                <div style={{ color: this.props.color1 }} className="card-delta">
+                    {this.props.delta ? (
+                        <>
+                            [+
+                            <CountUp separator={","} start={0} end={this.props.delta} duration={0.5} />]
+                        </>
+                    ) : (
+                        ""
+                    )}
+                </div>
+                <div style={{ color: this.props.color1 }} className="card-title">
+                    {this.props.title}
                 </div>
             </div>
         );

@@ -1,0 +1,40 @@
+.map-box {
+    height: 650px;
+    width: 100%;
+}
+.map-box h1 {
+    margin: 0 auto;
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.map-box p {
+    margin: 0 auto;
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.svg-map {
+    padding: 10px;
+    height: 90%;
+    width: 100%;
+}
+
+.activeclass {
+    fill: #0080ff;
+    stroke: #2c94fc;
+    stroke-width: 1px;
+}
+
+.svg-map__location {
+    fill: #e7eaec;
+    stroke: #2c94fc73;
+    stroke-width: 1px;
+}
+.svg-map__location:hover {
+    stroke: #0080ff;
+    stroke-width: 1px;
+}

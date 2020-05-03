@@ -17,12 +17,8 @@
 }
 
 .table-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 95%;
+    width: 570px;
     margin: 0 auto;
-    margin-top: 70px;
 }
 
 .linechart {
@@ -42,4 +38,29 @@
 .form-control:focus {
     box-shadow: none;
     border-color: none;
+}
+
+.outer-box {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+    padding: 5px;
+}
+.displaystate {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 900px) {
+    .outer-box {
+        height: 120px !important;
+    }
+
+    .table-box {
+        width: 100%;
+        margin: 0 auto;
+    }
 }

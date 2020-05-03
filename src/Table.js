@@ -41,13 +41,18 @@ export default class Table extends React.Component {
         super(props);
         this.state = {
             info: [],
+            data: [],
         };
     }
 
     async componentWillReceiveProps(nextProps) {
         if (nextProps.state !== this.state.state && nextProps.state !== "Total") {
             let info = await this.findstate(this.state.data, nextProps.state);
-            this.setState({ info: info.districtData });
+            if (info !== -1) {
+                this.setState({ info: info.districtData });
+            } else {
+                this.setState({ info: [] });
+            }
         }
     }
 
@@ -56,16 +61,20 @@ export default class Table extends React.Component {
             if (this.props.state !== "Total") {
                 let { data } = await axios.get("https://api.covid19india.org/v2/state_district_wise.json");
                 let info = await this.findstate(data, this.props.state);
-                this.setState({ info: info.districtData, data: data });
+                if (info !== -1) {
+                    this.setState({ info: info.districtData, data: data });
+                }
             }
         } catch (err) {}
     }
+
     findstate(data, x) {
         for (let i = 0; i < data.length; i++) {
             if (data[i].state === x) {
                 return data[i];
             }
         }
+        return -1;
     }
     modify(data) {
         let x = data.filter((i) => i.district !== "Unknown");
