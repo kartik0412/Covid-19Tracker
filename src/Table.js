@@ -1,40 +1,6 @@
 import React from "react";
 import DataTable from "react-data-table-component";
-import Card from "@material-ui/core/Card";
-import SortIcon from "@material-ui/icons/ArrowDownward";
 import axios from "axios";
-
-const columns = [
-    {
-        name: "District",
-        selector: "district",
-        sortable: true,
-        width: "150px",
-    },
-    {
-        name: "Confirmed",
-        selector: "confirmed",
-        sortable: true,
-    },
-    {
-        name: "Active",
-        selector: "active",
-        sortable: true,
-        center: true,
-    },
-    {
-        name: "Recovered",
-        selector: "recovered",
-        sortable: true,
-        center: true,
-    },
-    {
-        name: "Deaths",
-        selector: "deceased",
-        sortable: true,
-        center: true,
-    },
-];
 
 export default class Table extends React.Component {
     constructor(props) {
@@ -82,17 +48,67 @@ export default class Table extends React.Component {
     }
 
     render() {
+        const columns = [
+            {
+                name: "District",
+                selector: "district",
+                sortable: true,
+                width: "140px",
+                left: true,
+                style: {
+                    color: this.props.mode === "light" ? "black" : "white",
+                    backgroundColor: this.props.mode === "light" ? "white" : "black",
+                },
+            },
+            {
+                name: "Confirmed",
+                selector: "confirmed",
+                sortable: true,
+                center: true,
+                width: "85px",
+                style: {
+                    color: this.props.mode === "light" ? "black" : "white",
+                    backgroundColor: this.props.mode === "light" ? "white" : "black",
+                },
+            },
+            {
+                name: "Active",
+                selector: "active",
+                sortable: true,
+                center: true,
+                width: "85px",
+                style: {
+                    color: this.props.mode === "light" ? "black" : "white",
+                    backgroundColor: this.props.mode === "light" ? "white" : "black",
+                },
+            },
+            {
+                name: "Recovered",
+                selector: "recovered",
+                sortable: true,
+                center: true,
+                width: "75px",
+            },
+            {
+                name: "Deaths",
+                selector: "deceased",
+                sortable: true,
+                center: true,
+                width: "85px",
+                style: {
+                    color: this.props.mode === "light" ? "black" : "white",
+                    backgroundColor: this.props.mode === "light" ? "white" : "black",
+                },
+            },
+        ];
         return (
-            <Card>
-                <DataTable
-                    title={this.props.state}
-                    columns={columns}
-                    data={this.modify(this.state.info)}
-                    defaultSortField="confirmed"
-                    defaultSortAsc={false}
-                    sortIcon={<SortIcon />}
-                />
-            </Card>
+            <DataTable
+                title={this.props.state}
+                columns={columns}
+                data={this.modify(this.state.info)}
+                defaultSortField="confirmed"
+                defaultSortAsc={false}
+            />
         );
     }
 }

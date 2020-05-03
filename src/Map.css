@@ -22,19 +22,17 @@
     height: 90%;
     width: 100%;
 }
-
 .activeclass {
     fill: #0080ff;
     stroke: #2c94fc;
-    stroke-width: 1px;
+    stroke-width: 2px;
 }
-
 .svg-map__location {
-    fill: #e7eaec;
+    fill: var(--mapcolor);
     stroke: #2c94fc73;
     stroke-width: 1px;
 }
 .svg-map__location:hover {
     stroke: #0080ff;
-    stroke-width: 1px;
+    stroke-width: 2px;
 }

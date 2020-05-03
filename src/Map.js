@@ -4,16 +4,22 @@ import { SVGMap } from "react-svg-map";
 import "./Map.css";
 
 export default class Map extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: null,
+        };
+    }
     handlemapselect(e) {
-        let x = document.getElementsByTagName("path");
-        for (let i = 0; i < x.length; i++) {
-            if (x[i].id) document.getElementById(x[i].id).setAttribute("class", "svg-map__location");
-        }
         let statename = e.target.getAttribute("name");
         this.props.clickMap(statename);
-        this.props.show();
         document.getElementById(e.target.id).setAttribute("class", "activeclass");
+        if (this.state.name) {
+            document.getElementById(this.state.name).setAttribute("class", "svg-map__location");
+        }
+        this.setState({ name: e.target.id });
     }
+
     render() {
         return (
             <div className="map-box">
