@@ -114,7 +114,7 @@ body {
 }
 
 .table-box {
-    width: 470px;
+    width: 400px;
     margin: 0 auto;
 }
 
@@ -205,10 +205,5 @@ body {
     }
     .block-1-left {
         font-size: 1.2rem;
-    }
-
-    .table-box {
-        width: 100%;
-        margin: 0 auto;
     }
 }

@@ -48,6 +48,28 @@ export default class Table extends React.Component {
     }
 
     render() {
+        const customStyles = {
+            rows: {
+                style: {
+                    minHeight: "30px", // override the row
+                    maxWidth: "400px",
+                },
+            },
+            headCells: {
+                style: {
+                    paddingLeft: "5px", // override the cells head
+                    paddingRight: "0px",
+                    width: "400px",
+                },
+            },
+            cells: {
+                style: {
+                    paddingLeft: "7px", // override the cells
+                    paddingRight: "0px",
+                    height: "30px",
+                },
+            },
+        };
         const columns = [
             {
                 name: "District",
@@ -65,7 +87,7 @@ export default class Table extends React.Component {
                 selector: "confirmed",
                 sortable: true,
                 center: true,
-                width: "85px",
+                width: "80px",
                 style: {
                     color: this.props.mode === "light" ? "black" : "white",
                     backgroundColor: this.props.mode === "light" ? "white" : "black",
@@ -76,7 +98,7 @@ export default class Table extends React.Component {
                 selector: "active",
                 sortable: true,
                 center: true,
-                width: "85px",
+                width: "62px",
                 style: {
                     color: this.props.mode === "light" ? "black" : "white",
                     backgroundColor: this.props.mode === "light" ? "white" : "black",
@@ -87,14 +109,18 @@ export default class Table extends React.Component {
                 selector: "recovered",
                 sortable: true,
                 center: true,
-                width: "75px",
+                width: "57px",
+                style: {
+                    color: this.props.mode === "light" ? "black" : "white",
+                    backgroundColor: this.props.mode === "light" ? "white" : "black",
+                },
             },
             {
                 name: "Deaths",
                 selector: "deceased",
                 sortable: true,
                 center: true,
-                width: "85px",
+                width: "58px",
                 style: {
                     color: this.props.mode === "light" ? "black" : "white",
                     backgroundColor: this.props.mode === "light" ? "white" : "black",
@@ -108,6 +134,8 @@ export default class Table extends React.Component {
                 data={this.modify(this.state.info)}
                 defaultSortField="confirmed"
                 defaultSortAsc={false}
+                customStyles={customStyles}
+                theme={this.props.mode === "night" ? "dark" : "default"}
             />
         );
     }

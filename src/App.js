@@ -78,7 +78,7 @@ export default class App extends React.Component {
     }
 
     render() {
-        const { statewise, timeseries, state, show, mode, isloading } = this.state;
+        const { statewise, timeseries, state, mode, isloading } = this.state;
         return (
             <>
                 {isloading ? (
