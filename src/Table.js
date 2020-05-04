@@ -120,7 +120,7 @@ export default class Table extends React.Component {
                 selector: "deceased",
                 sortable: true,
                 center: true,
-                width: "58px",
+                width: "61px",
                 style: {
                     color: this.props.mode === "light" ? "black" : "white",
                     backgroundColor: this.props.mode === "light" ? "white" : "black",
