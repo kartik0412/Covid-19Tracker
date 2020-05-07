@@ -1,22 +1,7 @@
 .map-box {
     height: 650px;
-    width: 100%;
+    width: 50%;
 }
-.map-box h1 {
-    margin: 0 auto;
-    margin-top: 10px;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 0.8rem;
-}
-.map-box p {
-    margin: 0 auto;
-    margin-top: 10px;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 0.8rem;
-}
-
 .svg-map {
     padding: 10px;
     height: 90%;
@@ -35,4 +20,10 @@
 .svg-map__location:hover {
     stroke: #0080ff;
     stroke-width: 2px;
+}
+
+@media screen and (max-width: 900px) {
+    .map-box {
+        width: 100%;
+    }
 }

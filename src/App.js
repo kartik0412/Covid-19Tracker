@@ -76,7 +76,20 @@ export default class App extends React.Component {
             show: false,
         });
     }
-
+    getdata() {
+        let data = [];
+        const { statewise } = this.state;
+        for (let i = 1; i < statewise.length; i++) {
+            data.push({
+                district: statewise[i].state,
+                active: Number(statewise[i].active),
+                confirmed: Number(statewise[i].confirmed),
+                recovered: Number(statewise[i].recovered),
+                deceased: Number(statewise[i].deaths),
+            });
+        }
+        return data;
+    }
     render() {
         const { statewise, timeseries, state, mode, isloading } = this.state;
         return (
@@ -104,14 +117,6 @@ export default class App extends React.Component {
                             </h1>
                         </div>
                         <div style={{ width: "100%" }} className="outer-box">
-                            <div className="block-1">
-                                <div className="block-1-left">{statewise[state].state}</div>
-                                {state !== 0 && (
-                                    <div onClick={this.seeTotal} className="block-1-right">
-                                        See Total
-                                    </div>
-                                )}
-                            </div>
                             {statewise ? (
                                 <div className="block-2">
                                     <Card
@@ -150,20 +155,20 @@ export default class App extends React.Component {
                                 ""
                             )}
                         </div>
-                        <Map
-                            mode={mode}
-                            clickMap={this.clickMap}
-                            updatetime={statewise && statewise[state] ? statewise[state].lastupdatedtime : 0}
-                        />
-                        {timeseries ? (
-                            this.state.state === 0 ? (
-                                <Chart timeseries={timeseries} />
-                            ) : (
-                                <div className="table-box">{<Table mode={mode} state={statewise[state].state} />}</div>
-                            )
-                        ) : (
-                            ""
-                        )}
+                        <div className="updated-time">
+                            <p>Last updated : {statewise && statewise[state] ? statewise[state].lastupdatedtime : 0}</p>
+                            <h1>Click on State/UT to view their stats</h1>
+                            <h1>Click outside of Map for total cases</h1>
+                        </div>
+                        <div className="map-table">
+                            <Map mode={mode} clickMap={this.clickMap} />
+                            {timeseries && (
+                                <div className="table-box">
+                                    {<Table mode={mode} state={state === 0 ? this.getdata() : statewise[state].state} />}
+                                </div>
+                            )}
+                        </div>
+                        {timeseries && this.state.state === 0 && <Chart timeseries={timeseries} />}
                     </>
                 )}
             </>

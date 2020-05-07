@@ -11,6 +11,7 @@ export default class Map extends React.Component {
         };
     }
     handlemapselect(e) {
+        e.stopPropagation();
         let statename = e.target.getAttribute("name");
         this.props.clickMap(statename);
         document.getElementById(e.target.id).setAttribute("class", "activeclass");
@@ -19,12 +20,15 @@ export default class Map extends React.Component {
         }
         this.setState({ name: e.target.id });
     }
-
+    mouseOut() {
+        if (this.state.name) {
+            document.getElementById(this.state.name).setAttribute("class", "svg-map__location");
+        }
+        this.props.clickMap("Total");
+    }
     render() {
         return (
-            <div className="map-box">
-                <p>Last updated : {this.props.updatetime}</p>
-                <h1>Click on State/UT to view their stats </h1>
+            <div onClick={() => this.mouseOut()} className="map-box">
                 <SVGMap onLocationClick={(e) => this.handlemapselect(e)} map={India} />
             </div>
         );

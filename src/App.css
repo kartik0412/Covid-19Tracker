@@ -114,8 +114,29 @@ body {
 }
 
 .table-box {
-    width: 400px;
+    width: 420px;
+    height: 600px;
+    overflow-y: auto;
     margin: 0 auto;
+}
+.updated-time {
+    margin: 10px;
+    width: 100%;
+}
+
+.updated-time h1 {
+    margin: 0 auto;
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.updated-time p {
+    margin: 0 auto;
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.8rem;
 }
 
 .linechart {
@@ -148,42 +169,6 @@ body {
     margin-bottom: 17px;
 }
 
-.block-1 {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-    width: 42%;
-    height: 100%;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-}
-
-.block-1-left {
-    text-align: left;
-    width: 69%;
-    font-weight: bold;
-    font-size: 1.2rem;
-    height: 100%;
-    color: rgb(255, 165, 0);
-    padding: 5px;
-    margin-right: 10px;
-    border-radius: 10px;
-    background-color: rgba(255, 165, 0, 0.2);
-}
-.block-1-right {
-    text-align: center;
-    width: 30%;
-    height: 100%;
-    font-size: 1.2rem;
-    color: rgb(255, 165, 0);
-    font-weight: bold;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: rgba(255, 165, 0, 0.2);
-    cursor: pointer;
-}
-
 .block-2 {
     text-align: center;
     width: 100%;
@@ -193,6 +178,13 @@ body {
     justify-content: center;
     flex-direction: row;
     font-size: 1.2rem;
+}
+
+.map-table {
+    width: 100%;
+    height: 700px;
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 900px) {
@@ -205,5 +197,12 @@ body {
     }
     .block-1-left {
         font-size: 1.2rem;
+    }
+    .map-table {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }

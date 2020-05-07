@@ -12,24 +12,35 @@ export default class Table extends React.Component {
     }
 
     async componentWillReceiveProps(nextProps) {
-        if (nextProps.state !== this.state.state && nextProps.state !== "Total") {
-            let info = await this.findstate(this.state.data, nextProps.state);
-            if (info !== -1) {
-                this.setState({ info: info.districtData });
+        if (nextProps.state !== this.state.state) {
+            if (typeof nextProps.state === "string") {
+                let info = await this.findstate(this.state.data, nextProps.state);
+                if (info !== -1) {
+                    this.setState({ info: info.districtData });
+                } else {
+                    this.setState({ info: [] });
+                }
             } else {
-                this.setState({ info: [] });
+                this.setState({
+                    info: nextProps.state,
+                });
             }
         }
     }
 
     async componentDidMount() {
         try {
-            if (this.props.state !== "Total") {
-                let { data } = await axios.get("https://api.covid19india.org/v2/state_district_wise.json");
+            let { data } = await axios.get("https://api.covid19india.org/v2/state_district_wise.json");
+            if (typeof this.props.state === "string") {
                 let info = await this.findstate(data, this.props.state);
                 if (info !== -1) {
                     this.setState({ info: info.districtData, data: data });
                 }
+            } else {
+                this.setState({
+                    info: this.props.state,
+                    data: data,
+                });
             }
         } catch (err) {}
     }
@@ -129,7 +140,7 @@ export default class Table extends React.Component {
         ];
         return (
             <DataTable
-                title={this.props.state}
+                title={typeof this.props.state === "string" ? this.props.state : "India"}
                 columns={columns}
                 data={this.modify(this.state.info)}
                 defaultSortField="confirmed"
