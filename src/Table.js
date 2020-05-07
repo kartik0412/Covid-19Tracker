@@ -86,7 +86,7 @@ export default class Table extends React.Component {
                 name: "District",
                 selector: "district",
                 sortable: true,
-                width: "140px",
+                width: "150px",
                 left: true,
                 style: {
                     color: this.props.mode === "light" ? "black" : "white",
