@@ -90,6 +90,23 @@ export default class App extends React.Component {
         }
         return data;
     }
+    getLasteUpdateTime(x) {
+        let oldDate = new Date(x);
+        let curDate = new Date();
+        let h = (24 + curDate.getHours() - oldDate.getHours()) % 24;
+        let m = (60 + curDate.getMinutes() - oldDate.getMinutes()) % 60;
+        let res = "";
+        if (h >= 24) {
+            let d = Math.floor(h / 24);
+            h %= 24;
+            res += `${d} day${d > 1 ? "s" : ""} `;
+        }
+        if (h > 0) res += `${h} hour${h > 1 ? "s" : ""} `;
+        if (m > 0) res += `${m} minute${m > 1 ? "s" : ""} `;
+        if (h || m) res += " ago";
+        return " " + res;
+    }
+
     render() {
         const { statewise, timeseries, state, mode, isloading } = this.state;
         return (
@@ -115,6 +132,15 @@ export default class App extends React.Component {
                                     </span>
                                 )}
                             </h1>
+                        </div>
+
+                        <div className="updated-time">
+                            <p>
+                                Last updated :
+                                {statewise && statewise[state]
+                                    ? this.getLasteUpdateTime(statewise[state].lastupdatedtime)
+                                    : ""}
+                            </p>
                         </div>
                         <div style={{ width: "100%" }} className="outer-box">
                             {statewise ? (
@@ -156,7 +182,6 @@ export default class App extends React.Component {
                             )}
                         </div>
                         <div className="updated-time">
-                            <p>Last updated : {statewise && statewise[state] ? statewise[state].lastupdatedtime : 0}</p>
                             <h1>Click on State/UT to view their stats</h1>
                             <h1>Click outside of Map for total cases</h1>
                         </div>
