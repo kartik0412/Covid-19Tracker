@@ -92,11 +92,11 @@ export default class App extends React.Component {
     }
     getLasteUpdateTime(x) {
         x = x.split("/");
-        let oldDate = new Date(`${x[1]}/${x[0]}/${[2]}`);
+        let oldDate = new Date(`${x[1]}/${x[0]}/${x[2]}`);
         let curDate = new Date();
+        console.log(oldDate, curDate);
         let h = (24 + curDate.getHours() - oldDate.getHours()) % 24;
         let m = (60 + curDate.getMinutes() - oldDate.getMinutes()) % 60;
-        console.log(x);
         let res = "";
         if (h >= 24) {
             let d = Math.floor(h / 24);
@@ -139,7 +139,9 @@ export default class App extends React.Component {
                         <div className="updated-time">
                             <p>
                                 Last updated :
-                                {statewise && statewise[state] && this.getLasteUpdateTime(statewise[state].lastupdatedtime)}
+                                {statewise && statewise[state]
+                                    ? this.getLasteUpdateTime(statewise[state].lastupdatedtime)
+                                    : ""}
                             </p>
                         </div>
                         <div style={{ width: "100%" }} className="outer-box">
