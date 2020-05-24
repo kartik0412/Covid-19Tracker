@@ -5,7 +5,7 @@ import "./Card.css";
 class Card extends React.Component {
     render() {
         return (
-            <div style={{ backgroundColor: this.props.color3 }} className="card-main">
+            <div style={{ border: `2px solid ${this.props.color1}`, backgroundColor: this.props.color3 }} className="card-main">
                 <div style={{ color: this.props.color2 }} className="card-number">
                     <CountUp separator={","} start={0} end={Number(this.props.value)} duration={0.5} />
                 </div>
@@ -16,8 +16,8 @@ class Card extends React.Component {
                             <CountUp separator={","} start={0} end={Number(this.props.delta)} duration={0.5} />]
                         </>
                     ) : (
-                        ""
-                    )}
+                            ""
+                        )}
                 </div>
                 <div style={{ color: this.props.color1 }} className="card-title">
                     {this.props.title}
