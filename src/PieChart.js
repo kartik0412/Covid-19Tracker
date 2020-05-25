@@ -2,6 +2,7 @@ import React from 'react';
 import { VictoryPie } from 'victory'
 
 export default class PieChart extends React.Component {
+
     render() {
         let data = [
             { x: 'Active', y: Number(this.props.data.active) },
@@ -20,7 +21,7 @@ export default class PieChart extends React.Component {
                 colorScale={graphicColor}
                 style={{
                     labels: {
-                        fontSize: 12
+                        fontSize: 12, fill: this.props.mode == 'light' ? 'black' : "white"
                     }
                 }}
             />

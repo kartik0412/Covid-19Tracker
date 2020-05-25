@@ -213,7 +213,7 @@ export default class App extends React.Component {
                                 }
                                 {statewise &&
                                     <div className="linechart">
-                                        <PieChart data={statewise[state]} />
+                                        <PieChart mode={this.state.mode} data={statewise[state]} />
                                     </div>
                                 }
                             </div>
