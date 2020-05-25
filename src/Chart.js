@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 export default class Chart extends React.Component {
     getlabel = (a) => {
         let labels = [];
-        for (let i = 0; i < a.length; i++) {
+        for (let i = a.length - 30; i < a.length; i++) {
             labels.push(a[i].date);
         }
         return labels;
@@ -12,21 +12,21 @@ export default class Chart extends React.Component {
 
     getdata = (a) => {
         let data = [];
-        for (let i = 0; i < a.length; i++) {
+        for (let i = a.length - 30; i < a.length; i++) {
             data.push(Number(a[i].totalconfirmed));
         }
         return data;
     };
     getdata2 = (a) => {
         let data = [];
-        for (let i = 0; i < a.length; i++) {
+        for (let i = a.length - 30; i < a.length; i++) {
             data.push(Number(a[i].totaldeceased));
         }
         return data;
     };
     getdata3 = (a) => {
         let data = [];
-        for (let i = 0; i < a.length; i++) {
+        for (let i = a.length - 30; i < a.length; i++) {
             data.push(Number(a[i].totalrecovered));
         }
         return data;
