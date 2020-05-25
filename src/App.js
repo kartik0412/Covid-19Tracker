@@ -1,7 +1,8 @@
 import React from "react";
 import Card from "./Card";
 import axios from "axios";
-import Chart from "./Chart";
+import LineChart from "./LineChart";
+import PieChart from "./PieChart";
 import Table from "./Table";
 import Map from "./Map";
 import "./App.css";
@@ -42,7 +43,7 @@ export default class App extends React.Component {
                 mode: newColorScheme,
                 isloading: false,
             });
-        } catch (err) {}
+        } catch (err) { }
     }
     seeTotal() {
         this.setState({
@@ -116,88 +117,108 @@ export default class App extends React.Component {
                 {isloading ? (
                     <div className="loader"></div>
                 ) : (
-                    <>
-                        <div className="heading">
-                            <h1>
-                                <span className="left">C</span>
-                                <span>
-                                    <img alt="virus.png" className="image" src="virus.png" />
-                                </span>
-                                <span className="right">vid-19 India Tracker</span>
-                                {this.state.mode === "light" ? (
-                                    <span className="display-mode">
-                                        <img alt="night.png" onClick={this.toggleMode} src="night.png" />
+                        <>
+                            <div className="heading">
+                                <h1>
+                                    <span className="left">C</span>
+                                    <span>
+                                        <img alt="virus.png" className="image" src="virus.png" />
                                     </span>
-                                ) : (
-                                    <span className="display-mode">
-                                        <img alt="light.png" onClick={this.toggleMode} src="light.png" />
-                                    </span>
-                                )}
-                            </h1>
-                        </div>
+                                    <span className="right">vid-19 India Tracker</span>
+                                    {this.state.mode === "light" ? (
+                                        <span className="display-mode">
+                                            <img alt="night.png" onClick={this.toggleMode} src="night.png" />
+                                        </span>
+                                    ) : (
+                                            <span className="display-mode">
+                                                <img alt="light.png" onClick={this.toggleMode} src="light.png" />
+                                            </span>
+                                        )}
+                                </h1>
+                            </div>
 
-                        <div className="updated-time">
-                            <p>
-                                Last updated :
+                            <div className="updated-time">
+                                <p>
+                                    Last updated :
                                 {statewise && statewise[state]
-                                    ? this.getLasteUpdateTime(statewise[state].lastupdatedtime)
-                                    : ""}
-                            </p>
-                        </div>
-                        <div style={{ width: "100%" }} className="outer-box">
-                            {statewise ? (
-                                <div className="block-2">
-                                    <Card
-                                        color1={"rgba(255,7,58,.6)"}
-                                        color2={"#ff073a"}
-                                        color3={"rgba(255,7,58,.13)"}
-                                        delta={statewise[state] ? statewise[state].deltaconfirmed : 0}
-                                        value={statewise[state] ? statewise[state].confirmed : 0}
-                                        title={"Confirmed"}
-                                    />
-                                    <Card
-                                        color1={"rgba(0,123,255,.6)"}
-                                        color2={"#007bff"}
-                                        color3={"rgba(0,123,255,.18)"}
-                                        value={statewise[state] ? statewise[state].active : 0}
-                                        title={"Active"}
-                                    />
-                                    <Card
-                                        color1={"rgba(40,167,69,.6)"}
-                                        color2={"#28a745"}
-                                        color3={"rgba(40,167,69,.2)"}
-                                        delta={statewise[state] ? statewise[state].deltarecovered : 0}
-                                        value={statewise[state] ? statewise[state].recovered : 0}
-                                        title={"Recovered"}
-                                    />
-                                    <Card
-                                        color1={"rgba(108,117,125,.6)"}
-                                        color2={"#6c757d"}
-                                        color3={"rgba(108,117,125,.13)"}
-                                        delta={statewise[state] ? statewise[state].deltadeaths : 0}
-                                        value={statewise[state] ? statewise[state].deaths : 0}
-                                        title={"Deaths"}
-                                    />
+                                        ? this.getLasteUpdateTime(statewise[state].lastupdatedtime)
+                                        : ""}
+                                </p>
+                            </div>
+                            <div style={{ width: "100%" }} className="outer-box">
+                                {statewise ? (
+                                    <div className="block-2">
+                                        <Card
+                                            color1={"rgba(255,7,58,.6)"}
+                                            color2={"#ff073a"}
+                                            color3={"rgba(255,7,58,.13)"}
+                                            delta={statewise[state] ? statewise[state].deltaconfirmed : 0}
+                                            value={statewise[state] ? statewise[state].confirmed : 0}
+                                            title={"Confirmed"}
+                                        />
+                                        <Card
+                                            color1={"rgba(0,123,255,.6)"}
+                                            color2={"#007bff"}
+                                            color3={"rgba(0,123,255,.18)"}
+                                            value={statewise[state] ? statewise[state].active : 0}
+                                            title={"Active"}
+                                        />
+                                        <Card
+                                            color1={"rgba(40,167,69,.6)"}
+                                            color2={"#28a745"}
+                                            color3={"rgba(40,167,69,.2)"}
+                                            delta={statewise[state] ? statewise[state].deltarecovered : 0}
+                                            value={statewise[state] ? statewise[state].recovered : 0}
+                                            title={"Recovered"}
+                                        />
+                                        <Card
+                                            color1={"rgba(108,117,125,1)"}
+                                            color2={"#6c757d"}
+                                            color3={"rgba(108,117,125,.13)"}
+                                            delta={statewise[state] ? statewise[state].deltadeaths : 0}
+                                            value={statewise[state] ? statewise[state].deaths : 0}
+                                            title={"Deaths"}
+                                        />
+                                    </div>
+                                ) : (
+                                        ""
+                                    )}
+                            </div>
+                            <div className="updated-time">
+                                <h1>Click on State/UT to view their stats</h1>
+                                <h1>Click outside of Map for total cases</h1>
+                            </div>
+                            <div className="map-table">
+
+                                <div className="table-content">
+                                    <Map mode={mode} clickMap={this.clickMap} />
+
                                 </div>
-                            ) : (
-                                ""
-                            )}
-                        </div>
-                        <div className="updated-time">
-                            <h1>Click on State/UT to view their stats</h1>
-                            <h1>Click outside of Map for total cases</h1>
-                        </div>
-                        <div className="map-table">
-                            <Map mode={mode} clickMap={this.clickMap} />
-                            {timeseries && (
-                                <div className="table-box">
-                                    {<Table mode={mode} state={state === 0 ? this.getdata() : statewise[state].state} />}
+                                <div className="table-content">
+                                    {timeseries && (
+                                        <div className="table-box">
+                                            {<Table mode={mode} state={state === 0 ? this.getdata() : statewise[state].state} />}
+                                        </div>
+                                    )}
+
                                 </div>
-                            )}
-                        </div>
-                        {timeseries && this.state.state === 0 && <Chart timeseries={timeseries} />}
-                    </>
-                )}
+
+                            </div>
+                            <div className="visual" >
+
+                                {timeseries && this.state.state === 0 &&
+                                    <div className="linechart">
+                                        <LineChart timeseries={timeseries} />
+                                    </div>
+                                }
+                                {statewise &&
+                                    <div className="linechart">
+                                        <PieChart data={statewise[state]} />
+                                    </div>
+                                }
+                            </div>
+                        </>
+                    )}
             </>
         );
     }
