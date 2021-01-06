@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@svg-maps/india": "^1.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.3",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
